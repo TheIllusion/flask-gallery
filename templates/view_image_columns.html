@@ -1,37 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
-    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-        <img class="img-responsive" src="https://m1.behance.net/rendition/modules/128626743/disp/bdf7c7afb76e0a0866cea43416c4b555.jpg">
-        original
-    </div>
-    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-        <img class="img-responsive" src="https://m1.behance.net/rendition/modules/128626743/disp/bdf7c7afb76e0a0866cea43416c4b555.jpg">
-        feedforward result
-    </div>
-    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-        <img class="img-responsive" src="https://m1.behance.net/rendition/modules/128626743/disp/bdf7c7afb76e0a0866cea43416c4b555.jpg">
-        ground truth
-    </div>
-    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-        <img class="img-responsive" src="https://m1.behance.net/rendition/modules/128626743/disp/bdf7c7afb76e0a0866cea43416c4b555.jpg">
-        by human
-    </div>
-    <div class="col-lg-3 col-md-3 col-xs-3 thumb">
-        <img class="img-responsive" src="https://m1.behance.net/rendition/modules/128626743/disp/bdf7c7afb76e0a0866cea43416c4b555.jpg">
-        by human
-    </div>
 
+    {% for img in img_list %}
+        {% for sub_dir in sub_directories %}
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
+            <img src="/static/view_image_columns/{{directory_name}}/{{sub_dir}}/{{img}}"  style="width: 400px; height:auto;">
+            {{sub_dir}}
+        {% endfor %}
+        <hr>
+    {% endfor %}
+
 
 </body>
 </html>
