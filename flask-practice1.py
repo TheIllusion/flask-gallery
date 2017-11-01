@@ -3,9 +3,10 @@ import os, glob
 
 app = Flask(__name__)
 
-#REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-practice1/static/gallery/'
+#GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-practice1/static/gallery/'
 GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/PycharmProjects/flask-gallery/static/gallery/'
-COLUMN_VIEW_REPORT_DIRECTORY_PATH = '/Users/Illusion/PycharmProjects/flask-gallery/static/view_image_columns/'
+
+COLUMN_VIEW_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-gallery/static/view_image_columns/'
 
 @app.route('/')
 def hello_world():
@@ -56,11 +57,14 @@ def show_images_in_columns(directory_name):
                 pass
             else:
                 return 'sub-dir path does not exist'
+
+        for i in range(len(sub_directories)):
+            sub_directories[i] = sub_directories[i].split('-')[1]
     else:
         return 'path does not exist'
 
     return render_template('view_image_columns.html', directory_name=directory_name,
-                           sub_directories=sub_directories, img_list=img_list)
+                           sub_directories=sub_directories, len_sub_dir=len(sub_directories), img_list=img_list)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

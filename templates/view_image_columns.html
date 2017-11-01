@@ -2,20 +2,32 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link href="/static/style.css" rel="stylesheet" />
 </head>
-<body>
+
+<center><font size="10">{{directory_name}}</font></center>
+
+<hr>
+<br>
 
     {% for img in img_list %}
-        {% for sub_dir in sub_directories %}
+        {% for i in range(len_sub_dir) %}
 
-            <img src="/static/view_image_columns/{{directory_name}}/{{sub_dir}}/{{img}}"  style="width: 400px; height:auto;">
-            {{sub_dir}}
+            <div style="float:left;margin-right:5px;">
+            <figure>
+
+                <img src="/static/view_image_columns/{{directory_name}}/{{i+1}}-{{sub_directories[i]}}/{{img}}"  style="width: 300px; height:auto;">
+
+                <figcaption>
+                    <center>{{sub_directories[i]}}</center>
+                </figcaption>
+
+            </figure>
+            </div>
+
         {% endfor %}
-        <hr>
+        <br style="clear:both" />
     {% endfor %}
-
 
 </body>
 </html>
