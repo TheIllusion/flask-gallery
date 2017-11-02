@@ -4,7 +4,7 @@ import os, glob
 app = Flask(__name__)
 
 #GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-practice1/static/gallery/'
-GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/PycharmProjects/flask-gallery/static/gallery/'
+GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-gallery/static/gallery/'
 
 COLUMN_VIEW_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-gallery/static/view_image_columns/'
 
@@ -12,7 +12,19 @@ COLUMN_VIEW_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-gallery/
 def hello_world():
     return 'Hello World!'
 
-@app.route('/gallery/<directory_name>')
+@app.route('/gallery/')
+def show_dirs_in_gallery():
+    if os.path.exists(GALLERY_REPORT_DIRECTORY_PATH):
+        os.chdir(GALLERY_REPORT_DIRECTORY_PATH)
+        sub_directories = glob.glob('*')
+
+        full_string = ''
+        for sub_dir in sub_directories:
+            full_string = full_string + '[' + sub_dir + ']  '
+
+        return full_string
+
+@app.route('/gallery/<directory_name>/')
 # show the images in the date directory
 def show_images_of_the_dir(directory_name):
     print 'directory_name = ', directory_name
@@ -27,7 +39,19 @@ def show_images_of_the_dir(directory_name):
     else:
         return 'path does not exist'
 
-@app.route('/view_image_columns/<directory_name>')
+@app.route('/columns/')
+def show_dirs_in_columns():
+    if os.path.exists(COLUMN_VIEW_REPORT_DIRECTORY_PATH):
+        os.chdir(COLUMN_VIEW_REPORT_DIRECTORY_PATH)
+        sub_directories = glob.glob('*')
+
+        full_string = ''
+        for sub_dir in sub_directories:
+            full_string = full_string + '[' + sub_dir + ']  '
+
+        return full_string
+
+@app.route('/columns/<directory_name>/')
 # show the images in columns
 def show_images_in_columns(directory_name):
 
