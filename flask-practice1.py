@@ -4,9 +4,9 @@ import os, glob
 app = Flask(__name__)
 
 #GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-practice1/static/gallery/'
-GALLERY_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-gallery/static/gallery/'
+GALLERY_REPORT_DIRECTORY_PATH = '/data1/users/rklee/flask-gallery/static/gallery/'
 
-COLUMN_VIEW_REPORT_DIRECTORY_PATH = '/Users/Illusion/IdeaProjects/flask-gallery/static/view_image_columns/'
+COLUMN_VIEW_REPORT_DIRECTORY_PATH = '/data1/users/rklee/flask-gallery/static/view_image_columns/'
 
 @app.route('/')
 def hello_world():
@@ -65,6 +65,8 @@ def show_images_in_columns(directory_name):
 
         print 'list of sub-directories: ', sub_directories
 
+	sub_directories.sort()
+
         img_list_searched = False
 
         for directory in sub_directories:
@@ -74,7 +76,7 @@ def show_images_in_columns(directory_name):
             if os.path.exists(dir_fullpath) and img_list_searched == False:
                 print 'sub-dir: ', dir_fullpath
                 os.chdir(dir_fullpath)
-                img_list = glob.glob('*.jpg')
+                img_list = glob.glob('*.png')
                 img_list_searched = True
                 print img_list
             elif img_list_searched == True:
